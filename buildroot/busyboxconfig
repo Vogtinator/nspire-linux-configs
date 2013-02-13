@@ -1,6 +1,6 @@
 #
 # Automatically generated make config: don't edit
-# Buildroot 2013.02-00635-gd76a37d-dirty Configuration
+# Buildroot 2013.02-rc1-00002-g6056de8-dirty Configuration
 #
 BR2_HAVE_DOT_CONFIG=y
 BR2_arm=y
@@ -35,7 +35,8 @@ BR2_GCC_TARGET_ABI="aapcs-linux"
 # BR2_arm922t is not set
 BR2_arm926t=y
 # BR2_arm10t is not set
-# BR2_arm1136jf_s is not set
+# BR2_arm1136jf_s_r0 is not set
+# BR2_arm1136jf_s_r1 is not set
 # BR2_arm1176jz_s is not set
 # BR2_arm1176jzf_s is not set
 # BR2_cortex_a5 is not set
@@ -46,8 +47,8 @@ BR2_arm926t=y
 # BR2_sa1100 is not set
 # BR2_xscale is not set
 # BR2_iwmmxt is not set
+# BR2_arm1136jf_s is not set
 BR2_ARM_EABI=y
-# BR2_ARM_OABI is not set
 
 #
 # Build options
@@ -68,6 +69,7 @@ BR2_ZCAT="gzip -d -c"
 BR2_BZCAT="bzcat"
 BR2_XZCAT="xzcat"
 BR2_TAR_OPTIONS=""
+BR2_DEFCONFIG="$(CONFIG_DIR)/defconfig"
 BR2_DL_DIR="$(TOPDIR)/dl"
 BR2_HOST_DIR="$(BASE_DIR)/host"
 
@@ -114,12 +116,11 @@ BR2_TOOLCHAIN_BUILDROOT=y
 BR2_KERNEL_HEADERS_3_7=y
 # BR2_KERNEL_HEADERS_VERSION is not set
 # BR2_KERNEL_HEADERS_SNAP is not set
-BR2_DEFAULT_KERNEL_HEADERS="3.7.4"
+BR2_DEFAULT_KERNEL_HEADERS="3.7.6"
 
 #
 # uClibc Options
 #
-# BR2_UCLIBC_VERSION_0_9_31 is not set
 # BR2_UCLIBC_VERSION_0_9_32 is not set
 BR2_UCLIBC_VERSION_0_9_33=y
 # BR2_UCLIBC_VERSION_SNAPSHOT is not set
@@ -236,18 +237,20 @@ BR2_TARGET_GENERIC_GETTY_BAUDRATE_KEEP=y
 BR2_TARGET_GENERIC_GETTY_BAUDRATE="0"
 BR2_TARGET_GENERIC_GETTY_TERM="vt100"
 BR2_TARGET_GENERIC_REMOUNT_ROOTFS_RW=y
+BR2_ROOTFS_OVERLAY=""
 BR2_ROOTFS_POST_BUILD_SCRIPT=""
+BR2_ROOTFS_POST_IMAGE_SCRIPT=""
 
 #
 # Package Selection for the target
 #
 BR2_PACKAGE_BUSYBOX=y
 # BR2_BUSYBOX_VERSION_1_19_X is not set
-BR2_BUSYBOX_VERSION_1_20_X=y
-# BR2_BUSYBOX_VERSION_1_21_X is not set
+# BR2_BUSYBOX_VERSION_1_20_X is not set
+BR2_BUSYBOX_VERSION_1_21_X=y
 # BR2_PACKAGE_BUSYBOX_SNAPSHOT is not set
-BR2_BUSYBOX_VERSION="1.20.2"
-BR2_PACKAGE_BUSYBOX_CONFIG="package/busybox/busybox-1.20.x.config"
+BR2_BUSYBOX_VERSION="1.21.0"
+BR2_PACKAGE_BUSYBOX_CONFIG="../nspire-linux-configs/busybox.config"
 # BR2_PACKAGE_BUSYBOX_SHOW_OTHERS is not set
 # BR2_PACKAGE_BUSYBOX_WATCHDOG is not set
 
@@ -286,7 +289,7 @@ BR2_PACKAGE_BUSYBOX_CONFIG="package/busybox/busybox-1.20.x.config"
 # BR2_PACKAGE_OPUS_TOOLS is not set
 
 #
-# pulseaudio requires a toolchain with WCHAR and threads support
+# pulseaudio requires a toolchain with WCHAR, LARGEFILE and threads support
 #
 # BR2_PACKAGE_VORBIS_TOOLS is not set
 # BR2_PACKAGE_WAVPACK is not set
@@ -307,6 +310,7 @@ BR2_PACKAGE_BUSYBOX_CONFIG="package/busybox/busybox-1.20.x.config"
 #
 # bonnie++ requires a toolchain with C++ support enabled
 #
+# BR2_PACKAGE_CACHE_CALIBRATOR is not set
 # BR2_PACKAGE_DHRYSTONE is not set
 
 #
@@ -535,10 +539,6 @@ BR2_PACKAGE_BUSYBOX_CONFIG="package/busybox/busybox-1.20.x.config"
 # BR2_PACKAGE_IRDA_UTILS is not set
 # BR2_PACKAGE_KBD is not set
 # BR2_PACKAGE_LCDPROC is not set
-
-#
-# libatasmart requires udev to be enabled
-#
 # BR2_PACKAGE_LM_SENSORS is not set
 
 #
@@ -596,6 +596,10 @@ BR2_PACKAGE_NANOCOM=y
 
 #
 # udev requires /dev mgmnt set to udev under System configuration
+#
+
+#
+# udisks requires /dev mgmnt set to udev under System configuration
 #
 # BR2_PACKAGE_USB_MODESWITCH is not set
 # BR2_PACKAGE_USB_MODESWITCH_DATA is not set
@@ -684,7 +688,10 @@ BR2_PACKAGE_ZLIB=y
 # Crypto
 #
 # BR2_PACKAGE_BEECRYPT is not set
-# BR2_PACKAGE_GNUTLS is not set
+
+#
+# gnutls requires a toolchain with WCHAR support
+#
 # BR2_PACKAGE_LIBGCRYPT is not set
 # BR2_PACKAGE_LIBGPG_ERROR is not set
 # BR2_PACKAGE_LIBMCRYPT is not set
@@ -788,6 +795,10 @@ BR2_PACKAGE_OPENSSL=y
 # lcdapi requires a toolchain with C++ and thread support enabled
 #
 # BR2_PACKAGE_LIBAIO is not set
+
+#
+# libatasmart requires udev to be enabled
+#
 # BR2_PACKAGE_LIBRAW1394 is not set
 # BR2_PACKAGE_TSLIB is not set
 # BR2_PACKAGE_LIBFREEFARE is not set
@@ -1077,7 +1088,7 @@ BR2_PACKAGE_NCURSES=y
 # BR2_PACKAGE_HTTPING is not set
 
 #
-# iftop requires IPv6 support in toolchain
+# iftop requires IPv6 and threads support in toolchain
 #
 # BR2_PACKAGE_INADYN is not set
 
@@ -1137,7 +1148,7 @@ BR2_PACKAGE_LINKS=y
 # BR2_PACKAGE_NUTTCP is not set
 
 #
-# olsr requires a toolchain with IPv6 support
+# olsr requires a toolchain with IPv6 and threads support
 #
 # BR2_PACKAGE_OPENNTPD is not set
 # BR2_PACKAGE_OPENSSH is not set
@@ -1252,6 +1263,10 @@ BR2_PACKAGE_LINKS=y
 # BR2_PACKAGE_NCDU is not set
 
 #
+# polkit requires a toolchain with WCHAR support
+#
+
+#
 # quota requires a toolchain with LARGEFILE + WCHAR support
 #
 
@@ -1329,10 +1344,14 @@ BR2_TARGET_ROOTFS_TAR_OPTIONS=""
 # Kernel
 #
 # BR2_LINUX_KERNEL is not set
-BR2_LEGACY_CHECK_2012_11=y
+
+#
+# Legacy config options
+#
+# BR2_PACKAGE_CUSTOMIZE is not set
+# BR2_PACKAGE_XSERVER_xorg is not set
+# BR2_PACKAGE_XSERVER_tinyx is not set
+# BR2_PACKAGE_PTHREAD_STUBS is not set
 # BR2_PACKAGE_GETTEXT_STATIC is not set
 # BR2_PACKAGE_LIBINTL is not set
 # BR2_PACKAGE_INPUT_TOOLS_EVTEST is not set
-# BR2_PACKAGE_PTHREAD_STUBS is not set
-# BR2_PACKAGE_XSERVER_xorg is not set
-# BR2_PACKAGE_XSERVER_tinyx is not set
