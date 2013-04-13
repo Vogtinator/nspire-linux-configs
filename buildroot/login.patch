@@ -1,0 +1,38 @@
+From 70f20763c15c2a18227518eeb84d692460701559 Mon Sep 17 00:00:00 2001
+From: Fabian Vogt <fabian@ritter-vogt.de>
+Date: Sat, 13 Apr 2013 20:44:18 +0200
+Subject: [PATCH] Fixed some issues (root login on tty0)
+
+---
+ system/skeleton/etc/passwd    |    4 ++--
+ system/skeleton/etc/securetty |    1 +
+ 2 files changed, 3 insertions(+), 2 deletions(-)
+
+diff --git a/system/skeleton/etc/passwd b/system/skeleton/etc/passwd
+index ed7006a..bb4538f 100644
+--- a/system/skeleton/etc/passwd
++++ b/system/skeleton/etc/passwd
+@@ -1,4 +1,4 @@
+-root:x:0:0:root:/root:/bin/sh
++root::0:0:root:/root:/bin/sh
+ daemon:x:1:1:daemon:/usr/sbin:/bin/sh
+ bin:x:2:2:bin:/bin:/bin/sh
+ sys:x:3:3:sys:/dev:/bin/sh
+@@ -13,4 +13,4 @@ dbus:x:81:81:dbus:/var/run/dbus:/bin/sh
+ ftp:x:83:83:ftp:/home/ftp:/bin/sh
+ nobody:x:99:99:nobody:/home:/bin/sh
+ sshd:x:103:99:Operator:/var:/bin/sh
+-default:x:1000:1000:Default non-root user:/home/default:/bin/sh
++default::1000:1000:Default non-root user:/home/default:/bin/sh
+diff --git a/system/skeleton/etc/securetty b/system/skeleton/etc/securetty
+index c96f2fb..97dd6dd 100644
+--- a/system/skeleton/etc/securetty
++++ b/system/skeleton/etc/securetty
+@@ -1,3 +1,4 @@
++tty0
+ tty1
+ tty2
+ tty3
+-- 
+1.7.10.4
+
